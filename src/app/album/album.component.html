@@ -1,0 +1,22 @@
+<p>album works!</p>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Id </th>
+                  <th scope="col">Title</th>
+                  <th><button (click)="ViewAllPhotos()">View All Photos</button></th>
+                </tr>
+              </thead>
+              <tbody>
+            <tr *ngFor="let data of albumData">
+                <td>{{data.id}}</td>
+                <td>{{data.title}}</td>
+                <td><button (click)="viewPhotos(data.id)">View Photos</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

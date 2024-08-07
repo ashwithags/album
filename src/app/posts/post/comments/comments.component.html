@@ -1,0 +1,18 @@
+<div class="row p-5">
+
+    <div>
+        <textarea [(ngModel)]="NewComment.body" class="form-control"></textarea>
+        <p *ngIf="commentLengthError" style="color: red;">Comment should be atleast 10 Character</p>
+        <button (click)="AddNewComment()" class="btn btn-primary">Add New</button>
+
+    </div>
+
+
+    <div class="capital" *ngFor="let comment of comments.reverse()">
+        <p>{{comment.body}}</p>
+        <p (click)="LikeComment(comment.id)">Like</p>        
+        <p (click)="DeleteComment(comment.id)">Delete Comment</p>
+        <p class="userDetail">{{comment.name}} || {{comment.email}}</p>
+        <hr />
+    </div>
+</div>

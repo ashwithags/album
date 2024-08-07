@@ -1,0 +1,166 @@
+<div class="container pt-4 ">
+    <div class="row">
+        <app-message [Message]="message" (messageClosed)='clearMessage()'></app-message>
+    </div>
+
+    <div class="row pb-4 filterPannel">
+        <div class="col-2">
+            <label>Task Status : </label>
+            <select [(ngModel)]="status" class="form-control">
+                <option value="" selected>All</option>
+                <option value=true>Completed</option>
+                <option value=false>Pending</option>
+            </select>
+        </div>
+        <div class="col-3 ">
+            <label>Search Todo : </label>
+            <div class="form-inline">
+                <input type="text" class="form-control" [(ngModel)]="searchTodoString" placeholder="Search todos" />
+                <button class="btn btn-success" (click)="SearchTodo()">Search</button>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <button class="btn btn-success" (click)="showNewTodoBlock()">Add New Todo</button>
+        </div>
+        <div class="col" >
+            <button class="btn btn-success" style="float: right;" (click)="ToggleDesign()" *ngIf="!showTable">T</button>
+            <button class="btn btn-success" style="float: right;" (click)="ToggleDesign()" *ngIf="showTable">C</button>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4" *ngIf="showAddNewSection">
+        <label>New Task</label>
+        <textarea class="form-control" [(ngModel)]="newTodo.title"></textarea>
+        <p class="errorMessage">{{AddnewError}}</p>
+        <button class="btn btn-success col-1 mt-2" (click)="AddNewTodo()">Save</button>
+        <button class="btn btn-warning col-1 mt-2" (click)="CancelNewTodo()">Cancel</button>
+
+    </div>
+    <div *ngIf="showTable">
+        <table class="table table-striped">
+            <thead>
+                <th>UserId</th>
+                <th>Id</th>
+                <th>Task : Total: {{toDoList.length}}</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of toDoList |filter:'completed':status">
+                    <td>{{task.userId}}</td>
+                    <td>{{task.id}}</td>
+                    <td>
+                        <p *ngIf="task.editSelected" class="mb-0">{{task.title}}</p>
+                        <input *ngIf="!task.editSelected" type="text" [(ngModel)]="task.title" class="form-control" />
+                        <span *ngIf="!task.editSelected" class="savebutton" (click)="saveTodo(task.id)">save</span>
+                        <span *ngIf="!task.editSelected" class="savebutton" (click)="CancelTodo(task.id)">Cancel</span>
+                    </td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                [(ngModel)]="task.completed" (click)="changeStatus(task.id)" />
+                            <label class="form-check-label" for="flexSwitchCheckDefault">
+                                <p style="color: rgb(8, 163, 42);" *ngIf="task.completed" class="mb-0">Completed</p>
+                                <p style="color: rgb(177, 137, 18);" *ngIf="!task.completed" class="mb-0">Pending</p>
+                            </label>
+                        </div>
+                    </td>
+                    <td><button (click)="EditTodo(task.id)" class="btn btn-edit btn-success">Edit</button></td>
+                    <td><button (click)="Deletetodo(task.id)" class="btn btn-danger">x</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!showTable">
+        <div class="row g-3">
+            <div class="col-3 ">
+                <div class="box">
+
+                <h5>New Task</h5>
+
+                <div *ngFor="let task of toDoList">
+                        <div class="card p-2 m-3" *ngIf="task.new && !task.completed">
+                            <h6>{{task.title}}</h6>
+                            <p>Task ID: TASK-{{task.id}}</p>
+                            <div class="filterPannel">
+                                <button class="btn btn-success btn-edit">Edit</button>
+                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 ">
+                <div class="box">
+
+                    <h5>Pending Task</h5>
+
+                    <div *ngFor="let task of toDoList">
+                        <div class="card p-2 m-3" *ngIf="!task.completed && !task.new">
+                            <h6>{{task.title}}</h6>
+                            <p>Task ID: TASK-{{task.id}}</p>
+                            <div class="filterPannel">
+                                <button class="btn btn-success btn-edit">Edit</button>
+                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 ">
+                <div class="box">
+
+                    <h5>In Review</h5>
+                </div>
+            </div>
+
+            <div class="col-3 ">
+                <div class="box">
+
+                    <h5>Completed Task</h5>
+
+                    <div *ngFor="let task of toDoList">
+                        <div class="card p-2 m-3" *ngIf="task.completed">
+                            <h6>{{task.title}}</h6>
+                            <p>Task ID: TASK-{{task.id}}</p>
+                            <div class="filterPannel">
+                                <button class="btn btn-success btn-edit">Edit</button>
+                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

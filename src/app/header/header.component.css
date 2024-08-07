@@ -1,0 +1,13 @@
+.navbar-brand{
+    cursor: pointer;
+    font-size: 45px;
+    font-weight: 700;
+    font-family: math;
+    text-decoration: overline;
+    text-shadow: 0px 7px 4px #373535;
+    color: white;
+}
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: rgb(32 56 160) !important;
+}

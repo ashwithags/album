@@ -1,0 +1,17 @@
+<h1 *ngIf="isLoading">Loding..........</h1>
+<div class="container" *ngIf="!isLoading" >
+    <div class="row">
+        <div class="col" *ngFor="let photo of filteredArray">
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{photo.thumbnailUrl}}" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">{{photo.id}} : {{photo.title}}</p>
+                </div>
+              </div>
+
+        </div>
+        <mat-paginator [length]='totalItems' [pageSize]='pageSize' [pageIndex]='currentPage' (page)='pageChanged($event)'></mat-paginator>
+
+    </div>
+</div>

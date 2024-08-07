@@ -1,0 +1,41 @@
+<div class="container mt-5" >
+  <div class="row">
+    <div class="col-4">
+      <div class="card  mb-3 text-center" style="max-width: 18rem;">
+        <div class="card-header">User Details</div>
+        <div class="card-body">
+          <img src="/assets/profile.png" alt="Profile photo of {{UserDetails[0].name}}" style="width: 70%">
+          <h5 class="card-title">{{UserDetails[0].name}}</h5>
+          <p class="card-text">{{UserDetails[0].email}}</p>
+          <p class="card-text">{{UserDetails[0].phone}}</p>
+          <p class="card-text">{{UserDetails[0].website}}</p>
+          <button class="btn btn-primary" (click)="getPosts()"> View Posts</button>
+          <button class="btn btn-primary" (click)="showPosts()"> AddPosts</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+
+      <div class="mb-3" *ngIf="showPost">
+        <input class="form-control mb-1" type="text" [(ngModel)]="NewPost.title">
+        <textarea class="form-control mb-1" rows="3" [(ngModel)]="NewPost.body"></textarea>
+        <button class="btn btn-primary mb-1" class="btn btn-primary" (click)="AddPost()">Add Post</button>
+      </div>
+
+
+      <div class="card mb-3 p-3" *ngFor="let post of Posts.reverse().slice(0,displayCount); index as i" >
+        <h6>{{i+1}}. {{post.title}}</h6>
+        <p>{{post.body}}</p>
+      </div>
+      <a (click)="LoadMorePosts()" *ngIf="displayCount<Posts.length">Load More Posts</a>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+

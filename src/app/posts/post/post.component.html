@@ -1,0 +1,27 @@
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-title">
+               <h5 style="text-transform: Capitalize;">{{post.title}}</h5> 
+            </div>
+            <div class="card-body" style="text-transform: Capitalize;">
+                {{post.body}}
+                <i class="fa-brands fa-angular"></i>
+            </div>
+            <p>Engagement on Comments: {{TotalLike}} </p>
+
+            <a (click)="ViewComments()" *ngIf="!ViewComment" style="text-decoration: underline;color: #343ab8;">View All Comments</a>
+            <a (click)="ViewComments()" *ngIf="ViewComment" style="text-decoration: underline;color: #343ab8;">Hide All Comments</a>
+
+
+
+            <app-comments [postId]="postId" *ngIf="ViewComment" (UpdateTotalLikes)="updateEventHandler($event)"></app-comments>
+
+        </div>
+    </div> 
+    
+</div>
+
+
+

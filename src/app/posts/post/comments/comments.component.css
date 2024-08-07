@@ -1,0 +1,9 @@
+
+
+.capital{
+    text-transform: capitalize;
+}
+.userDetail{
+    font-size: 14px;
+    color: #343ab8;
+}
