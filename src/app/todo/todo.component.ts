@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../todo.service';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { TodoService } from '../Services/todo.service';
+
 
 @Component({
   selector: 'app-todo',
@@ -18,7 +19,8 @@ export class TodoComponent implements OnInit {
   public showAddNewSection:boolean = false; 
   public AddnewError:string = '';
   public showTable:boolean = true;
-  public modalshow:boolean = false;
+  public showEditSection:boolean = false;
+  public editingTask:any = {};
 
   constructor(
     private todoService:TodoService,
@@ -26,12 +28,19 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTodoList();
+    console.log('ng init');
+
   }
 
+//   ngOnChanges(){
+//     console.log('ng on Change detected');
 
-ShowModal(){
-  this.modalshow = true;
-}
+//   }
+//   ngDoCheck(): void {
+//     console.log('Change detected');
+// }
+ 
+
 
   getTodoList(){
     this.todoService.getTodoList().subscribe(
@@ -108,6 +117,7 @@ ShowModal(){
         console.log(data);
         this.message.Message = 'Task updated successfully';
         this.message.messgeType = 'success';
+        this.showEditSection = false;
       },
       (error)=>{
         this.message.Message = error;
@@ -190,6 +200,12 @@ ShowModal(){
     else{
       this.showTable = true;
     }
+  }
+
+  EditColumnTask(task:any){
+    this.showEditSection = true;
+    this.showAddNewSection = false;
+    this.editingTask = {...task};
   }
 
 }

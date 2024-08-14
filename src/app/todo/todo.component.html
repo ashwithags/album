@@ -23,7 +23,7 @@
         <div class="col-2">
             <button class="btn btn-success" (click)="showNewTodoBlock()">Add New Todo</button>
         </div>
-        <div class="col" >
+        <div class="col">
             <button class="btn btn-success" style="float: right;" (click)="ToggleDesign()" *ngIf="!showTable">T</button>
             <button class="btn btn-success" style="float: right;" (click)="ToggleDesign()" *ngIf="showTable">C</button>
         </div>
@@ -34,6 +34,14 @@
         <p class="errorMessage">{{AddnewError}}</p>
         <button class="btn btn-success col-1 mt-2" (click)="AddNewTodo()">Save</button>
         <button class="btn btn-warning col-1 mt-2" (click)="CancelNewTodo()">Cancel</button>
+
+    </div>
+    <div class="row mt-4 mb-4"  *appAppIfNot="!showEditSection">
+        <label>Edit Task</label>
+        <textarea class="form-control" [(ngModel)]="editingTask.title"></textarea>
+        <p class="errorMessage">{{AddnewError}}</p>
+        <button class="btn btn-success col-1 mt-2" (click)="saveTodo(editingTask.id)">Save</button>
+        <button class="btn btn-warning col-1 mt-2" (click)="CancelTodo(editingTask.id)">Cancel</button>
 
     </div>
     <div *ngIf="showTable">
@@ -77,15 +85,15 @@
             <div class="col-3 ">
                 <div class="box">
 
-                <h5>New Task</h5>
+                    <h5>New Task</h5>
 
-                <div *ngFor="let task of toDoList">
+                    <div *ngFor="let task of toDoList">
                         <div class="card p-2 m-3" *ngIf="task.new && !task.completed">
                             <h6>{{task.title}}</h6>
                             <p>Task ID: TASK-{{task.id}}</p>
                             <div class="filterPannel">
-                                <button class="btn btn-success btn-edit">Edit</button>
-                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                                <button class="btn btn-success btn-edit" (click) ="EditColumnTask(task)">Edit</button>
+                                <button class="btn btn-success btn-edit" (click) ="Deletetodo(task.id)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -102,8 +110,8 @@
                             <h6>{{task.title}}</h6>
                             <p>Task ID: TASK-{{task.id}}</p>
                             <div class="filterPannel">
-                                <button class="btn btn-success btn-edit">Edit</button>
-                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                                <button class="btn btn-success btn-edit" (click) ="EditColumnTask(task)">Edit</button>
+                                <button class="btn btn-success btn-edit" (click)="Deletetodo(task.id)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -126,8 +134,8 @@
                             <h6>{{task.title}}</h6>
                             <p>Task ID: TASK-{{task.id}}</p>
                             <div class="filterPannel">
-                                <button class="btn btn-success btn-edit">Edit</button>
-                                <button class="btn btn-success btn-edit"  (click)="Deletetodo(task.id)" >Delete</button>
+                                <button class="btn btn-success btn-edit" (click) ="EditColumnTask(task)">Edit</button>
+                                <button class="btn btn-success btn-edit" (click)="Deletetodo(task.id)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -138,29 +146,3 @@
 
     </div>
 </div>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>

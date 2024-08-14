@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { flatMap } from 'rxjs';
-import { AlbumService } from 'src/app/album.service';
+import { AlbumService } from 'src/app/Services/album.service';
 
 @Component({
   selector: 'app-photos',

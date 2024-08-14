@@ -19,7 +19,7 @@ export class ErrorMessageComponent implements OnInit {
     if ( this.Message && this.Message.messageType === 'error') {
       setTimeout(() => {
         this.closeMessage();
-      }, 3000);
+      }, 1000);
     }
   }
 

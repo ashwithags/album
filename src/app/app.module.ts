@@ -17,12 +17,14 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CommentsComponent } from './posts/post/comments/comments.component';
 import { UserComponent } from './user/user.component';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { TodoComponent } from './todo/todo.component';
 import { ErrorMessageComponent } from './message/message.component';
 import { LoginComponent } from './login/login.component';
+import { AppIfNotDirective } from './app-if-not.directive';
+import { TimeAgoPipe } from './pipe/time-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     TodoComponent,
     ErrorMessageComponent,
-    LoginComponent
+    LoginComponent,
+    AppIfNotDirective,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

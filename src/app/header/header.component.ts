@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
+import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   public toggleLoginButton:Boolean = false;
 
   constructor( 
-    private loginService:LoginService,
+    public loginService:LoginService,
     private router:Router,
 
   ) { }
@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.toggleLoginButton)
     this.toggleLoginButton = this.loginService.isLoggedIn();
+    console.log(this.toggleLoginButton)
+ 
   }
 
   logout(){

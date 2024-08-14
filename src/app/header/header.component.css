@@ -11,3 +11,10 @@
     --bs-bg-opacity: 1;
     background-color: rgb(32 56 160) !important;
 }
+ul.loginButton {
+    margin-bottom: 0px;
+    list-style: none;
+}
+.loginButton li {
+    color: #93a5d4;
+}

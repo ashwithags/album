@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row">
+<div class="container-fluid" style="height: 80vh;background-color: #eaeeff;">
+  <div class="row" style="height: 70vh;">
     <div class="col-4"></div>
     <div class="col login-Modal">
       <div class="Custom-modal" tabindex="-1" role="dialog">
@@ -7,12 +7,8 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Login</h5>
-              <p>
-                username: 'emilys',
-                password: 'emilyspass'</p>
             </div>
             <div class="modal-body">
-
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -25,8 +21,12 @@
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
                   [(ngModel)]="userLoginDetails.password">
               </div>
-              <button type="button" class="btn btn-primary" (click)="getLoginDetails()">Login</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <div class="loginButtons">
+                <button type="button" class="btn btn-primary me-2 mt-4" (click)="getLoginDetails()">Login</button>
+                <button type="button" class="btn btn-secondary mt-4" data-dismiss="modal">Cancel</button>
+              </div>    
+              <p> username: 'emilys',  password: 'emilyspass'</p>
+
             </div>
             <div class="modal-footer">
               <app-message [Message]="ErrorMessgae" (messageClosed)='clearMessage()'></app-message>

@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,6 @@ export class LoginService {
   logout(){
     localStorage.removeItem('token');
   }
-
 
   handleError(e:any){
     let errorMessage:any;

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { error } from 'console';
-import { PostsService } from 'src/app/posts.service';
+import { PostsService } from 'src/app/Services/posts.service';
 
 @Component({
   selector: 'app-comments',
