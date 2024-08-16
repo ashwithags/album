@@ -13,13 +13,16 @@ export class ErrorMessageComponent implements OnInit {
 
   @Output() messageClosed = new EventEmitter<void>();
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {
+
+    console.log(this.Message);
+    }
 
   ngOnChanges(changes:SimpleChange){
-    if ( this.Message && this.Message.messageType === 'error') {
+    if ( this.Message && this.Message.messageType != 'error') {
       setTimeout(() => {
         this.closeMessage();
-      }, 1000);
+      }, 3000);
     }
   }
 
