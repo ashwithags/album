@@ -18,7 +18,7 @@
             <a (click)="ViewComments()" *ngIf="!ViewComment" style="text-decoration: underline;color: #343ab8;">View All Comments</a>
             <a (click)="ViewComments()" *ngIf="ViewComment" style="text-decoration: underline;color: #343ab8;">Hide All Comments</a>
 
-            <app-comments [postId]="postId" *ngIf="ViewComment" (UpdateTotalLikes)="updateEventHandler($event)" (Message)="getMessage($event)"></app-comments>
+            <app-comments [postId]="postId" [hidden]="!ViewComment" (UpdateTotalLikes)="updateEventHandler($event)" (Message)="getMessage($event)"></app-comments>
 
         </div>
     </div> 
