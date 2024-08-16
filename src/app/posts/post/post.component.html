@@ -1,6 +1,10 @@
 
-<div class="container">
+<div class="container my-5">
     <div class="row">
+    </div>
+    <div class="row">
+        <app-message [Message]="message" (messageClosed)='clearMessage()'></app-message>
+
         <div class="card">
             <div class="card-title">
                <h5 style="text-transform: Capitalize;">{{post.title}}</h5> 
@@ -14,13 +18,10 @@
             <a (click)="ViewComments()" *ngIf="!ViewComment" style="text-decoration: underline;color: #343ab8;">View All Comments</a>
             <a (click)="ViewComments()" *ngIf="ViewComment" style="text-decoration: underline;color: #343ab8;">Hide All Comments</a>
 
-
-
-            <app-comments [postId]="postId" *ngIf="ViewComment" (UpdateTotalLikes)="updateEventHandler($event)"></app-comments>
+            <app-comments [postId]="postId" *ngIf="ViewComment" (UpdateTotalLikes)="updateEventHandler($event)" (Message)="getMessage($event)"></app-comments>
 
         </div>
     </div> 
-    
 </div>
 
 

@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   post: any;
   ViewComment: boolean = true;
   TotalLike:number=0;
+  message:any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -50,4 +51,13 @@ export class PostComponent implements OnInit {
     this.TotalLike = $event;
   }
 
+  getMessage($event:any){
+    this.message = $event;
+    console.log(this.message);
+  }
+
+  clearMessage(){
+    this.message.Message = '';
+    this.message.messgeType = '';
+  }
 }
