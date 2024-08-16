@@ -47,27 +47,6 @@ export class LoginComponent implements OnInit {
     this.ErrorMessgae.messgeType = '';
   }
 
-  // Method to decode the token
-  decodeToken(token: string): any {
-    try {
-      return jwtDecode(token);
-    } catch (error) {
-      console.error("Failed to decode token", error);
-      return null;
-    }
-  }
-
-  // Method to check if the token is expired
-  isTokenExpired(token: string): boolean {
-    const decodedToken = this.decodeToken(token);
-    if (!decodedToken) {
-      return true;
-    }
-
-    const expirationDate = decodedToken.exp * 1000; // JWT `exp` is in seconds, convert to milliseconds
-    return (Date.now() >= expirationDate);
-  }
-
-
+ 
 }
 
