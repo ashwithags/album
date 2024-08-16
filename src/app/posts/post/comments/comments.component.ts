@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Type } from '@angular/core';
 import { error } from 'console';
 import { PostsService } from 'src/app/Services/posts.service';
 
@@ -15,6 +15,8 @@ export class CommentsComponent implements OnInit {
 
   @Output() UpdateTotalLikes = new EventEmitter<Number>();
 
+  @Output() Message = new EventEmitter<any>();
+
   comments: any[] = [];
   TotalLike: Number = 0;
   NewComment: any = {};
@@ -23,7 +25,6 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.postId);
-
     this.getCommentsForThePost(this.postId);
 
   }
@@ -46,6 +47,15 @@ export class CommentsComponent implements OnInit {
         comment.like = 1;
       }
     });
+    let TotalLike = 0;
+    this.comments.forEach((com) => {
+      if (com.like == 1) {
+        console.log(com.id);
+      }
+    })
+
+    console.log(TotalLike);
+
     this.calculateTotalLikes();
   }
 
@@ -81,6 +91,11 @@ export class CommentsComponent implements OnInit {
     this.comments = this.comments.filter((comment) => {
       return comment.id != id;
     });
+    let text = {
+      Message:'Comment has been deleted',
+      messgeType : 'success'
+    }
+    this.Message.emit(text);
   }
 
 }
