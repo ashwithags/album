@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-
+import { MatIconModule } from '@angular/material/icon';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ import { HeaderComponent } from './header/header.component';
 import { TodoComponent } from './todo/todo.component';
 import { ErrorMessageComponent } from './message/message.component';
 import { LoginComponent } from './login/login.component';
-import { AppIfNotDirective } from './app-if-not.directive';
+import { AppIfNotDirective } from './directives/app-if-not.directive';
 import { TimeAgoPipe } from './pipe/time-ago.pipe';
 
 @NgModule({
@@ -52,7 +52,8 @@ import { TimeAgoPipe } from './pipe/time-ago.pipe';
     MatSlideToggleModule,
     MatPaginatorModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

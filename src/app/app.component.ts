@@ -45,5 +45,6 @@ export class AppComponent implements OnInit,OnChanges, DoCheck, AfterContentInit
     }
     ngOnDestroy(): void {
     //    console.log('Destroy');
+    localStorage.removeItem('token');
     }
 }
