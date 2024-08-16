@@ -9,25 +9,26 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public toggleLoginButton:Boolean = false;
+  public loginTime:string  = '';
+
 
   constructor( 
     public loginService:LoginService,
     private router:Router,
-
   ) { }
 
   ngOnInit(): void {
-    console.log(this.toggleLoginButton)
-    this.toggleLoginButton = this.loginService.isLoggedIn();
-    console.log(this.toggleLoginButton)
- 
-  }
+    this.loginTime = new Date().toString()
+    console.log(this.loginTime);
 
+  }
+  ngDoCheck(): void {
+    console.log('Change detected'+this.loginTime);
+  }
   logout(){
     this.loginService.logout();
     this.router.navigate(['\login']);
     this.toggleLoginButton = false;
-
   }
 
 }

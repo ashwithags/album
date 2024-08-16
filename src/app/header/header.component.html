@@ -22,8 +22,9 @@
       
       <ul class="loginButton">
         <li class="nav-item"><a class="nav-link" routerLink="login" routerLinkActive *ngIf="!loginService.isLoggedIn()">Log In </a>
-          <a class="nav-link" (click)="logout()"  *ngIf="loginService.isLoggedIn()">Log Out </a></li>
-
+          <a class="nav-link" (click)="logout()"  *ngIf="loginService.isLoggedIn()">Log Out </a>
+          <span class="loginTime" *ngIf="loginService.isLoggedIn()" >Logged in {{loginTime | timeAgo}}</span>
+        </li>
       </ul>
     </div>
   </nav>
