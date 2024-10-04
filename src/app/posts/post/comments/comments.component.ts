@@ -20,7 +20,7 @@ export class CommentsComponent implements OnInit {
   comments: any[] = [];
   TotalLike: Number = 0;
   NewComment: any = {};
-  commentLengthError:boolean= false;
+  commentLengthError: boolean = false;
 
 
   ngOnInit(): void {
@@ -43,19 +43,13 @@ export class CommentsComponent implements OnInit {
 
   LikeComment(id: number) {
     this.comments.forEach(comment => {
-      if (comment.id == id) {
+      if (comment.id == id && comment.like != 1) {
         comment.like = 1;
       }
-    });
-    let TotalLike = 0;
-    this.comments.forEach((com) => {
-      if (com.like == 1) {
-        console.log(com.id);
+      else if (comment.id == id && comment.like == 1) {
+        comment.like = 0;
       }
-    })
-
-    console.log(TotalLike);
-
+    });
     this.calculateTotalLikes();
   }
 
@@ -73,12 +67,12 @@ export class CommentsComponent implements OnInit {
 
   AddNewComment() {
 
-    if(this.NewComment.body.length <=10){
+    if (this.NewComment.body.length <= 10) {
       this.commentLengthError = true;
     }
-    else{
-      this.NewComment.name ='Ashwitha',
-      this.NewComment.email= 'ashwitha@gmail.com',
+    else {
+      this.NewComment.name = 'Ashwitha',
+      this.NewComment.email = 'ashwitha@gmail.com',
       this.NewComment.postId = this.postId;
       this.NewComment.id = this.comments.length + 1;
       this.comments.push(this.NewComment);
@@ -91,11 +85,14 @@ export class CommentsComponent implements OnInit {
     this.comments = this.comments.filter((comment) => {
       return comment.id != id;
     });
+
     let text = {
-      Message:'Comment has been deleted',
-      messgeType : 'success'
+      Message: 'Comment has been deleted',
+      messgeType: 'success'
     }
     this.Message.emit(text);
+    this.calculateTotalLikes();
+
   }
 
 }
